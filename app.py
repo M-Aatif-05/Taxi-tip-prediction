@@ -22,7 +22,7 @@ trip_duration_minutes = st.number_input("Trip Duration (minutes)")
 # Prediction Button
 if st.button("Predict Tip 💰"):
     input_features = np.array([[passenger_count, trip_distance, day_night, tolls_amount, trip_duration_minutes]])
-    prediction = lgbm.predict(input_features)[0]
+    prediction = lgbm.pkl.predict(input_features)[0]
 
     
     st.success(f"💵 Predicted Tip Amount: ${prediction:.2f}")
