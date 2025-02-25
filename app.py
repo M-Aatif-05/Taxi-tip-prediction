@@ -13,11 +13,11 @@ model = load_model()
 st.title("🚕 LGBM Tip Prediction App")
 
 # User Inputs
-passenger_count = st.number_input("Passenger Count", min_value=1, max_value=10, value=1)
-trip_distance = st.number_input("Trip Distance (miles)", min_value=0.0, value=1.0)
-fare_amount = st.number_input("Fare Amount ($)", min_value=0.0, value=10.0)
+passenger_count = st.number_input("Passenger Count")
+trip_distance = st.number_input("Trip Distance (miles)")
+fare_amount = st.number_input("Fare Amount ($)")
 day_night = st.selectbox("Day or Night", [0, 1])  # 0 = Day, 1 = Night
-trip_duration = st.number_input("Trip Duration (minutes)", min_value=1, value=10)
+trip_duration = st.number_input("Trip Duration (minutes)")
 
 # Prediction Button
 if st.button("Predict Tip 💰"):
