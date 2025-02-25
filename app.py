@@ -18,7 +18,7 @@ trip_duration = st.number_input("Trip Duration (minutes)")
 
 # Prediction Button
 if st.button("Predict Tip 💰"):
-    input_features = pd.DataFrame([[passenger_count, trip_distance, fare_amount, day_night, trip_duration]])
+    input_features = np.array([[passenger_count, trip_distance, fare_amount, day_night, trip_duration]])
     prediction = model.predict(input_features)
     
     st.success(f"💵 Predicted Tip Amount: ${prediction:.2f}")
