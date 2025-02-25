@@ -1,13 +1,9 @@
 import streamlit as st
-import joblib
+import pickle
 import numpy as np
 
-# Load the trained model from GitHub repo
-@st.cache(allow_output_mutation=True)
-def load_model():
-    return joblib.load("lgbm.pkl")  # Model must be in the same repo
-
-model = load_model()
+with open("lgbm.pkl", "rb") as model_file:
+    model = pickle.load(model_file)
 
 # Streamlit App UI
 st.title("🚕 LGBM Tip Prediction App")
