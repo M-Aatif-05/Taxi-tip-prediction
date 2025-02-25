@@ -11,8 +11,6 @@ if model is None:
 if model.booster_ is None:
     raise ValueError("Model is not yet trained.")
 
-st.write("Expected features:", model.feature_name())
-st.write("Number of features expected:", model.num_features_)
     
 # Streamlit App UI
 st.title("🚕 LGBM Tip Prediction App")
