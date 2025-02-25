@@ -2,7 +2,7 @@ import streamlit as st
 import pickle
 import numpy as np
 
-with open("lg1bm.pkl", "rb") as model_file:
+with open("lgbm.pkl", "rb") as model_file:
     model = pickle.load(model_file)
 
 # Streamlit App UI
