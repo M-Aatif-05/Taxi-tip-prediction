@@ -7,6 +7,9 @@ with open("lgbm.pkl", "rb") as model_file:
     model = pickle.load(model_file)
 if model is None:
     raise ValueError("Model is not loaded properly!")
+
+if model.booster_ is None:
+    raise ValueError("Model is not yet trained.")
     
 # Streamlit App UI
 st.title("🚕 LGBM Tip Prediction App")
