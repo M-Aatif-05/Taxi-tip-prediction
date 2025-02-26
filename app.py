@@ -70,26 +70,20 @@ if st.button("Predict Tip 💰"):
       text-align: right;
       font-size: 1.2rem;
       font-weight: bold;
-  }}
-  .meter-emojis {{
-      font-size: 1.8rem;
-      margin-top: 10px;
-  }}
+ 
 </style>
 
 <div class="meter-container">
     <div class="meter-header">TAXI METER</div>
     <div class="meter-body">
         <div class="meter-left">
-            Distance: {distance:.2f} miles<br>
-            Time: {time_} min<br>
-            Extras: ${extras:.2f}<br>
-            Total: ${total:.2f}
+            Distance: {trip_distance:.2f} miles<br>
+            Time: {time_duration_minutes} min<br>
+            Extras: ${tolls_amount:.2f}<br>
+            Total: ${20:.2f}
         </div>
         <div class="meter-right">
-            Tip Prediction?<br>
-            <div class="meter-emojis">
-                😊 😐 😞
+            Tip {tip_str}?<br>
             </div>
         </div>
     </div>
