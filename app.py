@@ -39,85 +39,61 @@ if st.button("Predict Tip 💰"):
     
     # Create a custom taxi meter design using HTML + CSS
     meter_html = f"""
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&display=swap');
-      .meter-container {{
-          width: 600px;
-          background-color: #000;
-          border-radius: 20px;
-          padding: 20px;
-          margin: auto;
-          box-shadow: 0 0 10px #333;
-          color: white;
-          font-family: 'PT Sans', sans-serif;
-          position: relative;
-      }}
-      .top-info {{
-          display: flex;
-          justify-content: space-around;
-          font-size: 0.8rem;
-          color: #aaa;
-          margin-bottom: 10px;
-      }}
-      .meter-header {{
-          text-align: center;
-          font-size: 2.5rem;
-          font-weight: bold;
-          letter-spacing: 2px;
-          margin-bottom: 20px;
-      }}
-      .meter-body {{
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-      }}
-      .meter-left {{
-          font-size: 1rem;
-          line-height: 1.8rem;
-          text-align: left;
-      }}
-      .meter-right {{
-          text-align: right;
-          font-size: 1.2rem;
-          font-weight: bold;
-      }}
-      .meter-emojis {{
-          font-size: 1.8rem;
-          margin-top: 10px;
-      }}
-    </style>
-    
-    <div class="meter-container">
-        <!-- Top Fake Info Row -->
-        <div class="top-info">
-            <div>Dubai</div>
-            <div>29°C</div>
-            <div>15:30 PM</div>
-            <div>2025-03-21</div>
+<style>
+  .meter-container {{
+      width: 600px;
+      background-color: #000;
+      border-radius: 20px;
+      padding: 20px;
+      color: white;
+      font-family: 'PT Sans', sans-serif;
+      margin: auto;
+  }}
+  .meter-header {{
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+  }}
+  .meter-body {{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }}
+  .meter-left {{
+      font-size: 1rem;
+      line-height: 1.8rem;
+      text-align: left;
+  }}
+  .meter-right {{
+      text-align: right;
+      font-size: 1.2rem;
+      font-weight: bold;
+  }}
+  .meter-emojis {{
+      font-size: 1.8rem;
+      margin-top: 10px;
+  }}
+</style>
+
+<div class="meter-container">
+    <div class="meter-header">TAXI METER</div>
+    <div class="meter-body">
+        <div class="meter-left">
+            Distance: {distance:.2f} miles<br>
+            Time: {time_} min<br>
+            Extras: ${extras:.2f}<br>
+            Total: ${total:.2f}
         </div>
-        
-        <!-- Main Header -->
-        <div class="meter-header">TAXI METER</div>
-        
-        <!-- Body: Left (ride details) & Right (tip prediction) -->
-        <div class="meter-body">
-            <div class="meter-left">
-                Distance: {trip_distance:.2f} miles<br>
-                Time: {trip_duration_minutes:.2f} min<br>
-                Extras: ${tolls_amount:.2f}<br>
-                Total: ${(trip_distance * 2 + tolls_amount):.2f}  <!-- Example total calculation -->
-            </div>
-            <div class="meter-right">
-                Tip Prediction?<br>
-                <div class="meter-emojis">
-                    😊 😐 😞
-                </div>
-                <div style="margin-top: 10px; font-size: 1.5rem;">
-                    {tip_str}
-                </div>
+        <div class="meter-right">
+            Tip Prediction?<br>
+            <div class="meter-emojis">
+                😊 😐 😞
             </div>
         </div>
     </div>
-    """
-    
-    st.markdown(meter_html, unsafe_allow_html=True)
+</div>
+"""
+
+st.markdown(meter_html, unsafe_allow_html=True)
