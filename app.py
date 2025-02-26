@@ -105,9 +105,9 @@ with open("xgb.pkl", "rb") as f:
         <div class="meter-body">
             <div class="meter-left">
                 Distance: {trip_distance:.2f} miles<br>
-                Time: {trip_duration} min<br>
+                Time: {trip_duration_minutes:.2f} min<br>
                 Extras: ${tolls_amount:.2f}<br>
-                Total: ${(trip_distance * 2 + tolls_amount):.2f}  <!-- Example total calculation -->
+                Total: ${20:.2f}  <!-- Example total calculation -->
             </div>
             <div class="meter-right">
                 Tip {tip_str}?<br>
