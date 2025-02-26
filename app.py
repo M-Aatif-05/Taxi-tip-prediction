@@ -27,7 +27,7 @@ if st.button("Predict Tip 💰"):
     # Convert prediction to a string, e.g., "5.79$"
     tip_str = f"{tip_pred:.2f}$"
 
-   import streamlit as st
+import streamlit as st
 import pickle
 import numpy as np
 
