@@ -16,11 +16,11 @@ model = load_model()
 st.title("🚕 XGBoost Tip Prediction App")
 
 # User Inputs
-passenger_count = st.number_input("Passenger Count", min_value=1, step=1, value=2)
-trip_distance = st.number_input("Trip Distance (miles)", min_value=0.0, step=0.1, value=3.2)
+passenger_count = st.number_input("Passenger Count")
+trip_distance = st.number_input("Trip Distance (miles)")
 day_night = st.selectbox("Day or Night", [0, 1])  # 0 = Day, 1 = Night
-tolls_amount = st.number_input("Tolls Amount ($)", min_value=0.0, step=0.1, value=2.5)
-trip_duration_minutes = st.number_input("Trip Duration (minutes)", min_value=1.0, step=1.0, value=15)
+tolls_amount = st.number_input("Tolls Amount ($)")
+trip_duration_minutes = st.number_input("Trip Duration (minutes)")
 
 if st.button("Predict Tip 💰"):
     # Prepare input features as a 2D array and convert to DataFrame
