@@ -36,7 +36,7 @@ if st.button("Predict Tip 💰"):
     
     # Format predicted tip as a string (e.g., "5.79$")
     tip_str = f"{tip_pred:.2f}$"
-    st.success(f"🚖 Taxi Meter Recommendation: Tip ${tip_recommendation} 💵")
+    st.success(f"🚖 Taxi Meter Recommendation: Tip ${tip_str} 💵")
 
     
     # Create a custom taxi meter design using HTML + CSS
