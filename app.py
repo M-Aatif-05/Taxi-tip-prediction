@@ -39,5 +39,64 @@ if st.button("Predict Tip 💰"):
     st.success(f"🚖 Taxi Tip Recommendation: Tip ${tip_str} 💵")
 
     
-    # Create a custom taxi meter design using HTML + CSS
+    meter_html = f"""
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&display=swap');
+        .meter-container {{
+            width: 600px;
+            background-color: #000;
+            color: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin: auto;
+            box-shadow: 0 0 10px #333;
+            font-family: 'PT Sans', sans-serif;
+        }}
+        .meter-header {{
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }}
+        .meter-body {{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }}
+        .meter-left {{
+            font-size: 1rem;
+            line-height: 1.8rem;
+            text-align: left;
+        }}
+        .meter-right {{
+            text-align: right;
+            font-size: 1.2rem;
+        }}
+        .tip-value {{
+            margin-top: 10px;
+            font-size: 1.5rem;
+            color: #FFD700;
+            font-weight: bold;
+        }}
+    </style>
+
+    <div class="meter-container">
+        <div class="meter-header">TAXI METER</div>
+        <div class="meter-body">
+            <div class="meter-left">
+                Distance: {trip_distance:.2f} miles<br>
+                Time: {trip_duration_minutes:.2f} min<br>
+                Extras: ${tolls_amount:.2f}<br>
+                Total: ${20:.2f}
+            </div>
+            <div class="meter-right">
+                Tip Prediction?<br>
+                <div class="tip-value">{tip_pred:.2f}$</div>
+            </div>
+        </div>
+    </div>
+    """
+    
+    st.markdown(meter_html, unsafe_allow_html=True)
  
