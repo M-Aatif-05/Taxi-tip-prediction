@@ -84,7 +84,7 @@ if st.button("Predict Tip 💰"):
 
     <div class="meter-container">
     <p style="text-align:center; font-size: 0.8rem; color: #aaa;">
-            Dubai         29°C           15:20         21-03-2025
+            Dubai • 29°C • 15:20 • 21-03-2025
         </p>
         <div class="meter-header">TAXI METER</div>
         <div class="meter-body">
@@ -95,7 +95,7 @@ if st.button("Predict Tip 💰"):
                 Total: ${20:.2f}
             </div>
             <div class="meter-right">
-                Tip {tip_pred:.2f}$?<br>
+                Tip {tip_pred:.2f}$? ✔️  ✖️ <br>
             </div>
         </div>
     </div>
