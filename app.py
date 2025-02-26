@@ -91,24 +91,24 @@ if st.button("Predict Tip 💰"):
         </div>
         
         <!-- Main Header -->
-        <div class="meter-header">TAXI METER</div>
+    <div class="meter-header">TAXI METER</div>
         
         <!-- Body: Left (ride details) & Right (tip prediction) -->
-        <div class="meter-body">
-            <div class="meter-left">
-                Distance: {trip_distance:.2f} miles<br>
-                Time: {trip_duration_minutes:.2f} min<br>
-                Extras: ${tolls_amount:.2f}<br>
-                Total: ${20:.2f}  <!-- Example total calculation -->
-            </div>
-            <div class="meter-right">
-                Tip Prediction?<br>
-                <div style="margin-top: 10px; font-size: 1.5rem;">
-                    {tip_str}
-                </div>
+    <div class="meter-body">
+        <div class="meter-left">
+            Distance: {trip_distance:.2f} miles<br>
+            Time: {trip_duration_minutes:.2f} min<br>
+            Extras: ${tolls_amount:.2f}<br>
+            Total: ${20:.2f}  <!-- Example total calculation -->
+        </div>
+        <div class="meter-right">
+            Tip Prediction?<br>
+            <div style="margin-top: 10px; font-size: 1.5rem;">
+                {tip_str}
             </div>
         </div>
     </div>
+</div>
     """
     
-    st.markdown(meter_html, unsafe_allow_html=True)
+st.markdown(meter_html, unsafe_allow_html=True)
