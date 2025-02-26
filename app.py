@@ -110,7 +110,7 @@ with open("xgb.pkl", "rb") as f:
                 Total: ${20:.2f}  <!-- Example total calculation -->
             </div>
             <div class="meter-right">
-                Tip {tip_str}?<br>
+                Tip {tip_str: .2f}?<br>
                 <div style="margin-top: 10px; font-size: 1.5rem;">
                     {tip_str}
                 </div>
