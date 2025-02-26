@@ -88,7 +88,7 @@ meter_html = f"""
         <div class="meter-right">
             <div class="meter-emojis">
                 😊 😐 😞
-            Tip {tip_pred: .2f}?:<br>
+            Tip {tip_str: .2f}?:<br>
             </div>
         </div>
     </div>
