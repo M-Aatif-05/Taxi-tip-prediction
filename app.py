@@ -23,6 +23,7 @@ tolls_amount = st.number_input("Tolls Amount ($)")
 trip_duration_minutes = st.number_input("Trip Duration (minutes)")
 
 if st.button("Predict Tip 💰"):
+if st.button("Predict Tip 💰"):
     # Prepare input features as a 2D array and convert to DataFrame
     input_features = np.array([[passenger_count, trip_distance, day_night, tolls_amount, trip_duration_minutes]])
     input_df = pd.DataFrame(
@@ -78,6 +79,11 @@ if st.button("Predict Tip 💰"):
       .meter-right {{
           text-align: right;
           font-size: 1.2rem;
+          font-weight: bold;
+      }}
+      .meter-emojis {{
+          font-size: 1.8rem;
+          margin-top: 10px;
       }}
     </style>
     
@@ -91,24 +97,27 @@ if st.button("Predict Tip 💰"):
         </div>
         
         <!-- Main Header -->
-    <div class="meter-header">TAXI METER</div>
+        <div class="meter-header">TAXI METER</div>
         
         <!-- Body: Left (ride details) & Right (tip prediction) -->
-    <div class="meter-body">
-        <div class="meter-left">
-            Distance: {trip_distance:.2f} miles<br>
-            Time: {trip_duration_minutes:.2f} min<br>
-            Extras: ${tolls_amount:.2f}<br>
-            Total: ${20:.2f}  <!-- Example total calculation -->
-        </div>
-        <div class="meter-right">
-            Tip Prediction?<br>
-            <div style="margin-top: 10px; font-size: 1.5rem;">
-                {tip_str}
+        <div class="meter-body">
+            <div class="meter-left">
+                Distance: {trip_distance:.2f} miles<br>
+                Time: {trip_duration_minutes:.2f} min<br>
+                Extras: ${tolls_amount:.2f}<br>
+                Total: ${(trip_distance * 2 + tolls_amount):.2f}  <!-- Example total calculation -->
+            </div>
+            <div class="meter-right">
+                Tip Prediction?<br>
+                <div class="meter-emojis">
+                    😊 😐 😞
+                </div>
+                <div style="margin-top: 10px; font-size: 1.5rem;">
+                    {tip_str}
+                </div>
             </div>
         </div>
     </div>
-</div>
     """
     
-st.markdown(meter_html, unsafe_allow_html=True)
+    st.markdown(meter_html, unsafe_allow_html=True)
