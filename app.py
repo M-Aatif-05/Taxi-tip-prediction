@@ -67,7 +67,7 @@ meter_html = f"""
   }}
   .meter-right {{
       text-align: right;
-      font-size: 1.2rem;
+      font-size: 1.0rem;
       font-weight: bold;
   }}
   .meter-emojis {{
@@ -88,7 +88,7 @@ meter_html = f"""
         <div class="meter-right">
             <div class="meter-emojis">
                 😊 😐 😞
-            Tip {tip_str}?:<br>
+            Tip {tip_str}?<br>
             </div>
         </div>
     </div>
