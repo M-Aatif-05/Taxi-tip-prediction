@@ -60,64 +60,63 @@ if st.button("Show Taxi Meter"):
     # Convert to string with two decimals
     tip_str = f"{tip_pred:.2f}"
     
-    # 5) HTML + CSS for a digital taxi meter with PT Sans font
-    meter_html = f"""
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&display=swap');
-    </style>
-    
-    <div style="
-        width: 500px;
-        height: 270px;
-        background-color: #000;
-        border: 3px solid #333;
-        border-radius: 30px;
-        margin: auto;
-        position: relative;
-        box-shadow: 0 0 10px #333;
-        font-family: 'PT Sans', sans-serif;
-        color: #f00;
-    ">
-      <!-- FARE -->
-      <div style="
-          position: absolute;
-          top: 20px;
-          left: 40px;
-          font-size: 2rem;
-      ">
-        FARE: ${20.00:.2f}
-      </div>
+   # HTML + CSS for a custom taxi meter display
+meter_html = f"""
+<style>
+  .meter-container {{
+      width: 600px;
+      background-color: #000;
+      border-radius: 20px;
+      padding: 20px;
+      color: white;
+      font-family: 'PT Sans', sans-serif;
+      margin: auto;
+  }}
+  .meter-header {{
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+  }}
+  .meter-body {{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }}
+  .meter-left {{
+      font-size: 1rem;
+      line-height: 1.8rem;
+      text-align: left;
+  }}
+  .meter-right {{
+      text-align: right;
+      font-size: 1.2rem;
+      font-weight: bold;
+  }}
+  .meter-emojis {{
+      font-size: 1.8rem;
+      margin-top: 10px;
+  }}
+</style>
 
-      <!-- EXTRAS -->
-      <div style="
-          position: absolute;
-          top: 70px;
-          left: 40px;
-          font-size: 2rem;
-      ">
-        EXTRAS: ${4.00:.2f}
-      </div>
-
-      <!-- TOTAL -->
-      <div style="
-          position: absolute;
-          top: 120px;
-          left: 40px;
-          font-size: 2rem;
-      ">
-        TOTAL: ${14.00:.2f}
-      </div>
-
-      <!-- TIP -->
-      <div style="
-          position: absolute;
-          top: 170px;
-          left: 40px;
-          font-size: 2.2rem;
-      ">
-        TIP: ${tip_str}
-      </div>
+<div class="meter-container">
+    <div class="meter-header">TAXI METER</div>
+    <div class="meter-body">
+        <div class="meter-left">
+            Distance: {distance:.2f} miles<br>
+            Time: {time_} min<br>
+            Extras: ${extras:.2f}<br>
+            Total: ${total:.2f}
+        </div>
+        <div class="meter-right">
+            Tip Prediction?<br>
+            <div class="meter-emojis">
+                😊 😐 😞
+            </div>
+        </div>
     </div>
-    """
+</div>
+"""
 
-    st.markdown(meter_html, unsafe_allow_html=True)
+st.markdown(meter_html, unsafe_allow_html=True)
