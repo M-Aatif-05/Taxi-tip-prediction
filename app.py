@@ -1,96 +1,88 @@
-import pandas as pd
 import streamlit as st
 import pickle
 import numpy as np
+import pandas as pd
+import math
 
-with open("xgb.pkl", "rb") as model_file:
-    model = pickle.load(model_file)
+# Load the XGBoost model from file "xgb.pkl"
+@st.cache_resource
+def load_model():
+    with open("xgb.pkl", "rb") as model_file:
+        model = pickle.load(model_file)
+    return model
 
+model = load_model()
 
-    
-# Streamlit App UI
-st.title("🚕 XgBoost Tip Prediction App")
+st.title("🚕 XGBoost Tip Prediction App")
 
 # User Inputs
-passenger_count = st.number_input("Passenger Count")
-trip_distance = st.number_input("Trip Distance (miles)")
+passenger_count = st.number_input("Passenger Count", min_value=1, step=1, value=2)
+trip_distance = st.number_input("Trip Distance (miles)", min_value=0.0, step=0.1, value=3.2)
 day_night = st.selectbox("Day or Night", [0, 1])  # 0 = Day, 1 = Night
-tolls_amount = st.number_input("Tolls_Amount")
-trip_duration_minutes = st.number_input("Trip Duration (minutes)")
+tolls_amount = st.number_input("Tolls Amount ($)", min_value=0.0, step=0.1, value=2.5)
+trip_duration_minutes = st.number_input("Trip Duration (minutes)", min_value=1.0, step=1.0, value=15)
 
-# Prediction Button
 if st.button("Predict Tip 💰"):
+    # Prepare input features as a 2D array and convert to DataFrame
     input_features = np.array([[passenger_count, trip_distance, day_night, tolls_amount, trip_duration_minutes]])
-    input_features = input_features.reshape(1, -1)
+    input_df = pd.DataFrame(
+        input_features, 
+        columns=['passenger_count', 'trip_distance', 'day_night', 'tolls_amount', 'trip_duration_minutes']
+    )
+    
+    # Make prediction
     tip_pred = model.predict(input_features)[0]
-
-    # Convert prediction to a string, e.g., "5.79$"
+    
+    # Format predicted tip as a string (e.g., "5.79$")
     tip_str = f"{tip_pred:.2f}$"
     
-import streamlit as st
-import pickle
-import numpy as np
-
-# 1) Load your model (example: xgb.pkl)
-with open("xgb.pkl", "rb") as f:
-    model = pickle.load(f)
-
-
-# HTML + CSS for the custom taxi meter design
+    # Create a custom taxi meter design using HTML + CSS
     meter_html = f"""
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&display=swap');
-    
-    .meter-container {{
-        width: 600px;
-        background-color: #000;
-        border-radius: 20px;
-        padding: 20px;
-        margin: auto;
-        box-shadow: 0 0 10px #333;
-        color: white;
-        font-family: 'PT Sans', sans-serif;
-        position: relative;
-    }}
-    
-    /* Top fake info row */
-    .top-info {{
-        display: flex;
-        justify-content: space-around;
-        font-size: 0.8rem;
-        color: #aaa;
-        margin-bottom: 10px;
-    }}
-    
-    .meter-header {{
-        text-align: center;
-        font-size: 2.5rem;
-        font-weight: bold;
-        letter-spacing: 2px;
-        margin-bottom: 20px;
-    }}
-    
-    .meter-body {{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }}
-    
-    .meter-left {{
-        font-size: 1rem;
-        line-height: 1.8rem;
-        text-align: left;
-    }}
-    
-    .meter-right {{
-        text-align: right;
-        font-size: 1.2rem;
-        font-weight: bold;
-    }}
-    
+      @import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&display=swap');
+      .meter-container {{
+          width: 600px;
+          background-color: #000;
+          border-radius: 20px;
+          padding: 20px;
+          margin: auto;
+          box-shadow: 0 0 10px #333;
+          color: white;
+          font-family: 'PT Sans', sans-serif;
+          position: relative;
+      }}
+      .top-info {{
+          display: flex;
+          justify-content: space-around;
+          font-size: 0.8rem;
+          color: #aaa;
+          margin-bottom: 10px;
+      }}
+      .meter-header {{
+          text-align: center;
+          font-size: 2.5rem;
+          font-weight: bold;
+          letter-spacing: 2px;
+          margin-bottom: 20px;
+      }}
+      .meter-body {{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+      }}
+      .meter-left {{
+          font-size: 1rem;
+          line-height: 1.8rem;
+          text-align: left;
+      }}
+      .meter-right {{
+          text-align: right;
+          font-size: 1.2rem;
+  
+    </style>
     
     <div class="meter-container">
-        <!-- Top Info Row -->
+        <!-- Top Fake Info Row -->
         <div class="top-info">
             <div>Dubai</div>
             <div>29°C</div>
@@ -101,7 +93,7 @@ with open("xgb.pkl", "rb") as f:
         <!-- Main Header -->
         <div class="meter-header">TAXI METER</div>
         
-        <!-- Body: Left (ride details) & Right (tip prediction with emojis) -->
+        <!-- Body: Left (ride details) & Right (tip prediction) -->
         <div class="meter-body">
             <div class="meter-left">
                 Distance: {trip_distance:.2f} miles<br>
@@ -110,9 +102,10 @@ with open("xgb.pkl", "rb") as f:
                 Total: ${20:.2f}  <!-- Example total calculation -->
             </div>
             <div class="meter-right">
-                Tip {tip_pred}?<br>
+                Tip Prediction?<br>
+                </div>
                 <div style="margin-top: 10px; font-size: 1.5rem;">
-                    {tip_pred}
+                    {tip_str}
                 </div>
             </div>
         </div>
