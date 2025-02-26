@@ -78,7 +78,7 @@ if st.button("Predict Tip 💰"):
       .meter-right {{
           text-align: right;
           font-size: 1.2rem;
-  
+      }}
     </style>
     
     <div class="meter-container">
@@ -103,7 +103,6 @@ if st.button("Predict Tip 💰"):
             </div>
             <div class="meter-right">
                 Tip Prediction?<br>
-                </div>
                 <div style="margin-top: 10px; font-size: 1.5rem;">
                     {tip_str}
                 </div>
