@@ -48,6 +48,13 @@ meter_html = f"""
       font-family: 'PT Sans', sans-serif;
       margin: auto;
   }}
+  .top-info {{
+        display: flex;
+        justify-content: space-around;
+        font-size: 0.8rem;
+        color: #aaa;
+        margin-bottom: 10px;
+    }}
   .meter-header {{
       text-align: center;
       font-size: 2.5rem;
@@ -70,11 +77,16 @@ meter_html = f"""
       font-size: 1.0rem;
       font-weight: bold;
   }}
-  .meter-emojis {{
-      font-size: 1.8rem;
-      margin-top: 10px;
-  }}
-</style>
+
+<div class="meter-container">
+        <!-- Top Info Row -->
+        <div class="top-info">
+            <div>Dubai</div>
+            <div>29°C</div>
+            <div>3:10 PM</div>
+            <div>21-03-2025</div>
+        </div>
+
 
 <div class="meter-container">
     <div class="meter-header">TAXI METER</div>
@@ -86,8 +98,6 @@ meter_html = f"""
             Total: ${20.00:.2f}
         </div>
         <div class="meter-right">
-            <div class="meter-emojis">
-                😊 😐 😞
             Tip {tip_str}?<br>
             </div>
         </div>
