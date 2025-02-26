@@ -36,73 +36,87 @@ with open("xgb.pkl", "rb") as f:
     model = pickle.load(f)
 
 
-# HTML + CSS for a custom taxi meter display
-meter_html = f"""
-<style>
-  .meter-container {{
-      width: 600px;
-      background-color: #000;
-      border-radius: 20px;
-      padding: 20px;
-      color: white;
-      font-family: 'PT Sans', sans-serif;
-      margin: auto;
-  }}
-  .top-info {{
+# HTML + CSS for the custom taxi meter design
+    meter_html = f"""
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&display=swap');
+    
+    .meter-container {{
+        width: 600px;
+        background-color: #000;
+        border-radius: 20px;
+        padding: 20px;
+        margin: auto;
+        box-shadow: 0 0 10px #333;
+        color: white;
+        font-family: 'PT Sans', sans-serif;
+        position: relative;
+    }}
+    
+    /* Top fake info row */
+    .top-info {{
         display: flex;
         justify-content: space-around;
         font-size: 0.8rem;
         color: #aaa;
         margin-bottom: 10px;
     }}
-  .meter-header {{
-      text-align: center;
-      font-size: 2.5rem;
-      font-weight: bold;
-      margin-bottom: 20px;
-      letter-spacing: 2px;
-  }}
-  .meter-body {{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-  }}
-  .meter-left {{
-      font-size: 1rem;
-      line-height: 1.8rem;
-      text-align: left;
-  }}
-  .meter-right {{
-      text-align: right;
-      font-size: 1.0rem;
-      font-weight: bold;
-  }}
-
-<div class="meter-container">
+    
+    .meter-header {{
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: bold;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+    }}
+    
+    .meter-body {{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }}
+    
+    .meter-left {{
+        font-size: 1rem;
+        line-height: 1.8rem;
+        text-align: left;
+    }}
+    
+    .meter-right {{
+        text-align: right;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }}
+    
+    
+    <div class="meter-container">
         <!-- Top Info Row -->
         <div class="top-info">
             <div>Dubai</div>
             <div>29°C</div>
-            <div>3:10 PM</div>
-            <div>21-03-2025</div>
+            <div>15:30 PM</div>
+            <div>2025-03-21</div>
         </div>
-
-
-<div class="meter-container">
-    <div class="meter-header">TAXI METER</div>
-    <div class="meter-body">
-        <div class="meter-left">
-            Distance: {trip_distance:.2f} miles<br>
-            Time: {trip_duration_minutes} min<br>
-            Extras: ${tolls_amount:.2f}<br>
-            Total: ${20.00:.2f}
-        </div>
-        <div class="meter-right">
-            Tip {tip_str}?<br>
+        
+        <!-- Main Header -->
+        <div class="meter-header">TAXI METER</div>
+        
+        <!-- Body: Left (ride details) & Right (tip prediction with emojis) -->
+        <div class="meter-body">
+            <div class="meter-left">
+                Distance: {trip_distance:.2f} miles<br>
+                Time: {trip_duration} min<br>
+                Extras: ${tolls_amount:.2f}<br>
+                Total: ${(trip_distance * 2 + tolls_amount):.2f}  <!-- Example total calculation -->
+            </div>
+            <div class="meter-right">
+                Tip {tip_str}?<br>
+                <div style="margin-top: 10px; font-size: 1.5rem;">
+                    {tip_str}
+                </div>
             </div>
         </div>
     </div>
-</div>
-"""
-
-st.markdown(meter_html, unsafe_allow_html=True)
+    """
+    
+    st.markdown(meter_html, unsafe_allow_html=True)
