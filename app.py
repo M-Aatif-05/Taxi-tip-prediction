@@ -26,7 +26,7 @@ if st.button("Predict Tip 💰"):
 
     # Convert prediction to a string, e.g., "5.79$"
     tip_str = f"{tip_pred:.2f}$"
-
+    
 import streamlit as st
 import pickle
 import numpy as np
@@ -82,13 +82,13 @@ meter_html = f"""
         <div class="meter-left">
             Distance: {trip_distance:.2f} miles<br>
             Time: {trip_duration_minutes} min<br>
-            Extras: ${3.00:.2f}<br>
-            Total: ${13.00:.2f}
+            Extras: ${tolls_amount:.2f}<br>
+            Total: ${20.00:.2f}
         </div>
         <div class="meter-right">
-            Tip Prediction?<br>
             <div class="meter-emojis">
                 😊 😐 😞
+            Tip {tip_pred: .2f}?:<br>
             </div>
         </div>
     </div>
