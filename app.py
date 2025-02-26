@@ -9,7 +9,7 @@ with open("xgb.pkl", "rb") as model_file:
 
     
 # Streamlit App UI
-st.title("🚕 LGBM Tip Prediction App")
+st.title("🚕 XgBoost Tip Prediction App")
 
 # User Inputs
 passenger_count = st.number_input("Passenger Count")
