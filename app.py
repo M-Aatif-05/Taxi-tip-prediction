@@ -92,7 +92,7 @@ if st.button("Predict Tip 💰"):
                 Total: ${20:.2f}
             </div>
             <div class="meter-right">
-                Tip{tip_pred:.2f}$?<br>
+                Tip {tip_pred:.2f}$?<br>
             </div>
         </div>
     </div>
